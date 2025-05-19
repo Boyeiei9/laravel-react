@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -81,5 +82,46 @@ Route::get('/queue', function () {
     return Inertia::render('Queue');
 })->name('queue');
 
+//11/5/2568
 
+Route::get('/product', function () {
+    $products = Product::all();
+    return Inertia::render('ProductList', compact('products') );
+})->name('product');
+
+Route::get('/product-others', function () {
+    return Inertia::render('ProductOthers');
+})->name('product-others');
+
+
+Route::get('/books-view', function () {
+    return Inertia::render('BooksPage');
+});
+
+//18/05/2568
+
+Route::get('/product-manager', function () {
+    $p = Product::all();
+    return Inertia::render('ProductManager', compact('p'));
+})->name('product-manager');
+
+
+Route::get('/product/create', function () {
+    return Inertia::render('ProductForm');
+})->name('product.create');
+
+Route::get('/product/{id}/edit', function ($id) {
+    $product = Product::findOrFail($id);
+    return Inertia::render('ProductForm', compact('product'));
+})->name('product.edit');
+
+// home work
+
+use App\Models\Book;
+
+Route::get('/books-view', fn() => Inertia::render('BooksPage'));
+Route::get('/books/create', fn() => Inertia::render('BookForm'));
+Route::get('/books/{book}/edit', function (Book $book) {
+    return Inertia::render('BookForm', ['book' => $book]);
+});
 
