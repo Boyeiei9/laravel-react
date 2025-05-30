@@ -27,5 +27,17 @@ Route::apiResource('/product', ProductController::class);
 //homework
 
 use App\Http\Controllers\Api\BookController;
-
 Route::apiResource('books', BookController::class);
+
+
+//project
+use App\Http\Controllers\Api\EmployeeController;
+use App\Models\Employee;
+
+Route::apiResource('employees', EmployeeController::class);
+
+Route::get('/employees', function () {
+    return response()->json(Employee::all());
+});
+
+

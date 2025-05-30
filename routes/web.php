@@ -125,3 +125,11 @@ Route::get('/books/{book}/edit', function (Book $book) {
     return Inertia::render('BookForm', ['book' => $book]);
 });
 
+//project
+use App\Http\Controllers\Api\EmployeeController;
+
+Route::resource('employees', EmployeeController::class);
+
+
+
+
